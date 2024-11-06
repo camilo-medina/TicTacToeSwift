@@ -12,7 +12,7 @@ import SwiftData
 struct TicTacToeApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            GameStateEntity.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -25,7 +25,7 @@ struct TicTacToeApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TicTacToeView(viewModel: GameViewModel(repository: GameRepositoryImpl(modelContainer: sharedModelContainer)))
         }
         .modelContainer(sharedModelContainer)
     }
